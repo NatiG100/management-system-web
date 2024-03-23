@@ -4,7 +4,7 @@ import ErrorRes from "./types/error";
 import { Message } from "./types/message";
 import { User } from "./user";
 
-type LoginInput = {email:string,password:string}
+export type LoginInput = {email:string,password:string}
 export class Auth{
     constructor(private url:string){}
     async signIn(loginInput:LoginInput){
