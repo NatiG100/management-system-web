@@ -1,11 +1,11 @@
-import { useReducer } from "react";
 import { UsersStateType } from "./user-slice/types";
+import userReducer from "./user-slice/slice";
 
 export type StateType = {
     users:UsersStateType;
 }
 const rootReducers = {
-    users:useReducer,
+    users:userReducer,
 }
 
 export default rootReducers;
