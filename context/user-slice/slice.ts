@@ -56,7 +56,7 @@ export const userSlice = createSlice({
         },
         meUserErrorAction:(state:UsersStateType,{payload:error}:PayloadAction<string>)=>{
             state.user.isLoading = false;
-            state.user.errors=error;
+            state.user.errors='';
         },
         logoutUserAction:(state:UsersStateType)=>{
             state.user.isLoading = false;

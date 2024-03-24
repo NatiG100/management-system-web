@@ -9,6 +9,7 @@ import {useEffect} from 'react';
 import { meUserAction } from "@/context/user-slice/slice";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/router";
+import MainLayout from "@/components/Layout";
 const theme = createTheme({
   
 });
@@ -26,7 +27,7 @@ export default function App(props: AppProps) {
 function ConfuguredApp({Component,pageProps}:AppProps){
   const {data,errors,isLoading} = useSelector((state:StateType)=>state.users.user);
   const dispath = useDispatch();
-  const router = useRouter()
+  const router = useRouter();
   useEffect(()=>{
     dispath(meUserAction());
   },[])
@@ -39,7 +40,14 @@ function ConfuguredApp({Component,pageProps}:AppProps){
     }
   },[errors,data])
   if(isLoading) return<p>Loadig</p>
+  if(router.pathname.includes('login')){
+    return(
+      <Component {...pageProps}/>
+    );  
+  }
   return(
-    <Component {...pageProps}/>
+    <MainLayout>
+      <Component {...pageProps}/>
+    </MainLayout>
   );
 }
