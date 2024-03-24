@@ -10,6 +10,7 @@ import { meUserAction } from "@/context/user-slice/slice";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/router";
 import MainLayout from "@/components/Layout";
+import { fetchDepartmentAction } from "@/context/department-slice/slice";
 const theme = createTheme({
   
 });
@@ -30,6 +31,7 @@ function ConfuguredApp({Component,pageProps}:AppProps){
   const router = useRouter();
   useEffect(()=>{
     dispath(meUserAction());
+    dispath(fetchDepartmentAction());
   },[])
   useEffect(()=>{
     if(errors.length!==0 ||!data){

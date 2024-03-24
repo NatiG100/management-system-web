@@ -1,3 +1,5 @@
+import DepartmentRelationT from "./departmentRelation";
+
 export default interface DepartmentT{
     id:string;
     name:string;
@@ -6,4 +8,5 @@ export default interface DepartmentT{
     updatedAt:string;
     creatorId:string;
     creator:string;
+    relationsAsAChild:DepartmentRelationT[],
 }

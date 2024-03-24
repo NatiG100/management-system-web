@@ -11,7 +11,7 @@ export default function Home() {
   const dispatch = useDispatch();
   return (
     <div>
-      
+      <p>DAshboard</p>
     </div>
   )
 }

@@ -5,7 +5,7 @@ import ErrorRes from "./types/error";
 import { Message } from "./types/message";
 import ApiUtil from "./util";
 
-type DepartmentInput = Omit<DepartmentT, 'id'|'createdAt'|'updatedAt'|'creator'|'creatorId'>;
+export type DepartmentInput = Omit<DepartmentT, 'id'|'createdAt'|'updatedAt'|'creator'|'creatorId'>;
 
 export class Department{
     constructor(private url:string){}
