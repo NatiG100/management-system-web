@@ -3,6 +3,7 @@ import axiosClient from "./client";
 import DepartmentT from "./types/department";
 import ErrorRes from "./types/error";
 import { Message } from "./types/message";
+import ApiUtil from "./util";
 
 type DepartmentInput = Omit<DepartmentT, 'id'|'createdAt'|'updatedAt'|'creator'|'creatorId'>;
 
@@ -13,7 +14,7 @@ export class Department{
             this.url,
             departmentInfo,
             {
-                headers:{authorization:`Bearer ${localStorage.getItem("auth-token")}`}
+                headers:{authorization:`Bearer ${ApiUtil.getToken()}`}
             }
         );
     }
