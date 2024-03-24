@@ -1,17 +1,35 @@
 import { Anchor, Box, Button, Card, Center, Checkbox, Container, Flex, Group, Paper, PasswordInput, Space, Stack, Text, TextInput } from "@mantine/core";
 import { upperFirst, useToggle } from "@mantine/hooks";
 import {useForm} from "@mantine/form";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUserAction, registerUserAction } from "@/context/user-slice/slice";
+import { StateType } from "@/context/rootReducer";
 
+export interface AuthFormValues{
+  email:string,
+  fullName:string,
+  password:string,
+  terms:boolean,
+}
 export default function LoginPage({props}:any){
     const [type,toggle] = useToggle(['login','register']);
-    const form = useForm({
+    const form = useForm<AuthFormValues>({
         initialValues:{
             email:'',
             fullName:'',
             password:'',
             terms:false,
-        }
-    })
+        },
+    });
+    const dispatch = useDispatch();
+    function handleSubmit(formValue:AuthFormValues){
+      if(type==="login"){
+        dispatch(loginUserAction({email:formValue.email,password:formValue.password}));
+      }else if(type==="register"){
+        dispatch(registerUserAction({email:formValue.email,fullName:formValue.fullName,password:formValue.password}))
+      }
+    }
+    const {errors} = useSelector((state:StateType)=>state.users.user);
     return (
         <Center mt={"xl"}>
 
@@ -19,15 +37,15 @@ export default function LoginPage({props}:any){
             <Text size="lg" fw={500}>
         Welcome to OSMS, {type} with
       </Text>
-
-      <form onSubmit={form.onSubmit(() => {})}>
+      {errors.length!==0&&<Text c="red">{errors}</Text>}
+      <form onSubmit={form.onSubmit(handleSubmit)}>
         <Stack>
           {type === 'register' && (
             <TextInput
               label="Full Name"
               placeholder="Your name"
               value={form.values.fullName}
-              onChange={(event) => form.setFieldValue('name', event.currentTarget.value)}
+              onChange={(event) => form.setFieldValue('fullName', event.currentTarget.value)}
               radius="md"
             />
           )}

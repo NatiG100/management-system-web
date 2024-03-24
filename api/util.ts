@@ -5,4 +5,7 @@ export default class ApiUtil{
     static saveToken(token:string){
         localStorage.setItem("auth-token",token);
     }
+    static revokeToken(){
+        localStorage.removeItem("auth-token");
+    }
 }

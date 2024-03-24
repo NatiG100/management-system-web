@@ -6,6 +6,7 @@ import ApiUtil from "./util";
 
 export class OsmsApi{
     constructor(private apiConfig:ApiConfig){
+        this.apiConfig = apiConfig;
     }
     auth = new Auth(this.apiConfig.baseUrl+'auth/');
     department = new Department(this.apiConfig.baseUrl+'department/');
