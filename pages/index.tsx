@@ -28,7 +28,9 @@ export default function Home() {
         <Divider color="var(--mantine-primary-color-2)" />
         <Title>Actions</Title>
         <Group>
-          <Button leftSection={<IconLayersIntersect/>}>Manage Departments</Button>
+          <Link href={"/departments"}>
+            <Button leftSection={<IconLayersIntersect/>}>Manage Departments</Button>
+          </Link>
           <Link href={"/account"}>
             <Button leftSection={<IconUser/>}>Manage Account</Button>
           </Link>

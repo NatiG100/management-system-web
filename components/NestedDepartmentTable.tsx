@@ -93,7 +93,7 @@ export default function NestedDepartmentTable({nestedDepartment}:NestedDepartmen
                     {accessor:'createdAt', title:"Created At", textAlign:'right', width:150, cellsClassName:"truncate"},
                     {accessor:'updatedAt', title:"Updated At", textAlign:'right', width:150, cellsClassName:"truncate"},
                     {
-                        accessor:'id',
+                        accessor:'',
                         render:(department,index)=>(
                             <Group gap={6}>
                                 <Button 
@@ -130,7 +130,7 @@ export default function NestedDepartmentTable({nestedDepartment}:NestedDepartmen
                     allowMultiple:true,
                     expanded:{recordIds:expandedDepartments,onRecordIdsChange:setExpandedDepartments},
                     content:({record:department})=>(
-                        (data?.filter((dep)=>(dep?.relationsAsAChild[0]?.parentId===department?.id))?.length!==0)?<NestedDepartmentTable
+                        (data?.filter((dep)=>(dep?.relationsAsAChild[0]?.parentId===department?.id)).length!==0)?<NestedDepartmentTable
                             nestedDepartment={data?.filter((dep)=>(dep?.relationsAsAChild[0]?.parentId===department?.id))||[]}
                         />:<></>
                     )
