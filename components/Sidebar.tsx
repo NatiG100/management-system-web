@@ -19,15 +19,14 @@ import { useDisclosure } from '@mantine/hooks';
 
 export function Navbar() {
   const [active, setActive] = useState('Releases');
-  const [activeLink, setActiveLink] = useState('Settings');
   const [opened,{toggle,close}] = useDisclosure(false);
 
     const router = useRouter();
     const dispatch = useDispatch();
 const mainLinksMockdata = [
-    { icon: IconGauge, label: 'Dashboard',onclick:()=>{router.push('/')} },
-    {icon:IconLayersLinked,label:"Departments",onclick:()=>{router.push('/departments')}},
-    { icon: IconUser, label: 'Account',onclick:()=>{router.push('/account')} },
+    { icon: IconGauge, label: 'Dashboard',onclick:()=>{router.push('/')},active:router.pathname==="/" },
+    {icon:IconLayersLinked,label:"Departments",onclick:()=>{router.push('/departments')}, active:router.pathname.includes('/departments')},
+    { icon: IconUser, label: 'Account',onclick:()=>{router.push('/account')},active:router.pathname==="/account" },
     { icon: IconLogout, label: 'Logout',onclick:toggle },
     { icon: IconSettings, label: 'Settings',onclick:()=>{} },
   ];
@@ -48,7 +47,7 @@ const mainLinksMockdata = [
             link.onclick();
         }}
         className={classes.mainLink}
-        data-active={link.label === active || undefined}
+        data-active={link.active || undefined}
       >
         <link.icon style={{ width: rem(22), height: rem(22) }} stroke={1.5} />
       </UnstyledButton>
@@ -57,7 +56,7 @@ const mainLinksMockdata = [
 
   return (
     <>
-        <Dialog opened={opened} withCloseButton onClose={close} size="lg" radius="md" c={"white"} bg={"gray"}>
+        <Dialog opened={opened} withCloseButton onClose={close} size="lg" radius="md" c={"white"} bg={"var(--mantine-color-black)"}>
         <Text size="sm" mb="xs" fw={500}>
           Are you sure? You want to logout?
         </Text>

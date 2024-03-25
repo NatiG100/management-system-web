@@ -28,7 +28,7 @@ export default function MainLayout({children}:{children:ReactNode}){
                 <div className="mx-3 mt-4 mb-6">
                     <Breadcrumbs>{breadcrumbItems}</Breadcrumbs>
                 </div>
-                <div className="px-3">
+                <div className="px-3 h-full w-full overflow-auto">
                     {children}
                 </div>
             </div>

@@ -5,7 +5,7 @@ import {  useSelector } from "react-redux";
 import { StateType } from "@/context/rootReducer";
 import { useState } from "react";
 import Link from "next/link";
-import {IconUser} from "@tabler/icons-react"
+import {IconUser,IconLayersIntersect} from "@tabler/icons-react"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +30,8 @@ export default function Home() {
                     <Table.Th>Name</Table.Th>
                     <Table.Th>Description</Table.Th>
                     <Table.Th>Parent Id</Table.Th>
+                    <Table.Th>Created At</Table.Th>
+                    <Table.Th>Updated At</Table.Th>
                 </Table.Tr>
             </Table.Thead>
             <Table.Tbody>
@@ -48,6 +50,8 @@ export default function Home() {
                                 onClick={()=>hilightDepartment(department.relationsAsAChild[0].parentId)}
                             >{department.relationsAsAChild[0]?.parentId}</Link>:
                             "-"}</Table.Td>
+                        <Table.Td>{department.createdAt}</Table.Td>
+                        <Table.Td>{department.updatedAt}</Table.Td>
                     </Table.Tr>))
                 }
             </Table.Tbody>
@@ -55,8 +59,10 @@ export default function Home() {
         <Divider color="var(--mantine-primary-color-2)" />
         <Title>Actions</Title>
         <Group>
-          <Button>Manage Department</Button>
-          <Button>View Profile</Button>
+          <Button leftSection={<IconLayersIntersect/>}>Manage Departments</Button>
+          <Link href={"/account"}>
+            <Button leftSection={<IconUser/>}>Manage Account</Button>
+          </Link>
         </Group>
       </Stack>
     )

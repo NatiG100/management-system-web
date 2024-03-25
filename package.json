@@ -18,6 +18,7 @@
     "@reduxjs/toolkit": "^2.2.2",
     "@tabler/icons-react": "^3.1.0",
     "axios": "^1.6.8",
+    "mantine-datatable": "^7.6.1",
     "next": "14.1.4",
     "postcss-preset-mantine": "^1.13.0",
     "react": "^18",
