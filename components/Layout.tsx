@@ -2,9 +2,11 @@ import { ReactNode } from "react";
 import { Navbar } from "./Sidebar";
 import { Anchor, Breadcrumbs } from "@mantine/core";
 import { useRouter } from "next/router";
+import { useParams } from "next/navigation";
 
 export default function MainLayout({children}:{children:ReactNode}){
     const router = useRouter();
+    const params:{id?:string} = useParams();
     let items:{title:string,href?:string}[] = []
     if(router.pathname==='/'){
         items = [{title:"Dashboard"}]
@@ -14,7 +16,7 @@ export default function MainLayout({children}:{children:ReactNode}){
         items = [{title:"Account"}]
     }else if(router.pathname.includes("/departments")){
         const routes = router.pathname.split('/');
-        items = [{href:"/",title:"Departments"},{title:routes[-1]}]
+        items = [{href:"/",title:"Departments"},{title:params?.id||""}]
     }
     const breadcrumbItems = items.map((item, index) => (
         <Anchor href={item.href} key={index}>

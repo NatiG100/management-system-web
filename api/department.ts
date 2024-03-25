@@ -5,7 +5,7 @@ import ErrorRes from "./types/error";
 import { Message } from "./types/message";
 import ApiUtil from "./util";
 
-export type DepartmentInput = Omit<DepartmentT, 'id'|'createdAt'|'updatedAt'|'creator'|'creatorId'>;
+export type DepartmentInput = Omit<DepartmentT, 'id'|'createdAt'|'updatedAt'|'creator'|'creatorId'|'relationsAsAChild'>&{parentId?:string};
 
 export class Department{
     constructor(private url:string){}
@@ -25,7 +25,7 @@ export class Department{
     }
     async fetch(id:string){
         return axiosClient.get<ErrorRes<any>,Message<DepartmentT>>(
-            this.url+'id',
+            this.url+id,
         );
     }
     async update(id:string,updateInput:Partial<DepartmentInput>){
